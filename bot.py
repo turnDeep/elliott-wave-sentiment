@@ -270,6 +270,12 @@ class AdvancedElliottSentimentChecker:
             results['current_stage'] = best_stage[0]
             results['confidence'] = best_stage[1]
             results['stage_description'] = self.stages[best_stage[0]]['name']
+        else:
+            # デフォルトのステージを設定
+            results['current_stage'] = 'C'  # 例えば「調整」をデフォルトに
+            results['confidence'] = 0.5
+            results['stage_description'] = self.stages['C']['name']
+            results['warnings'].append('明確なステージを判断できませんでした。デフォルトのステージを表示しています。')
 
         # 警告メッセージの追加
         if results['current_stage'] in ['D', 'D-BC']:
